@@ -29,6 +29,7 @@ separated by a pipe “|”
 The task is the following:
 - Building a logical representation of Onto-X that preserves ancestor relationships (direct and indirect) and consequently enables reconstructing the hierarchy of entities. In other terms, for a given entity, we want to get all its relationships with the rest of the ontology entities. In addition we want to extract the depth of each relationship. For example: given the ID of “CERVIX DISORDER”, the API should return a dictionary of relationships:
 
+```
     {
     “GYNECOLOGIC DISORDERS” : 2,
     “CERVIX DISORDERS”: 1,
@@ -41,7 +42,7 @@ The task is the following:
     ,
     ......
     }
-
+```
 - The API should be implemented in python and should querybale through a Command Line Interface.
 
 - Bonus #1: Expose the traetment via Rest API using FastAPI
@@ -52,4 +53,5 @@ The task is the following:
 ## Deadline and Evaluation
 
 If you did not understand one of the instructions, you can contact me here: jeff@arcascience.ai
+
 As a reminder, the test must be returned within 2 days maximum after receiving this email.
