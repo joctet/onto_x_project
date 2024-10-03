@@ -17,11 +17,11 @@ This project is designed to parse a CSV file containing an ontology of pathologi
   - `main.py`: The main script to run the program
   - `streamlit_app.py`: Streamlit interface to interact with the FastAPI API 
   - `api.py`: FastAPI backend for handling entity queries.
-
 - `images/`: Contains the demo images for the README 
 - `data/`: Contains the CSV data 
 - `Dockerfile` : Contains the necessary steps to build an image of the project, including installing dependencies, copying source files
 - `requirements.txt` : Contains the list of the Python dependencies for the project.
+- `arborescence.txt` : Contains the structure of the project in the form of a tree, and was generated with the following command : ```tree /F > arborescence.txt```
 
 ## Setup Instructions to run the app on your machine
 
@@ -61,6 +61,9 @@ http://localhost:8000/entity?entity_id=http://entity/CST/CERVIX%20DIS
 ```
 docker build -t ontology-api
 ```
+You can check that the image is present with the following command :
+```docker images``` 
+You should see an image named "ontology-api".
 
 ### Then run the Docker container:
 
@@ -71,6 +74,7 @@ docker run -p 8000:8000 ontology-api
 ### Access the API by going to http://localhost:8000 in your browser and query the API :
 
 http://localhost:8000/entity?entity_id=http://entity/CST/CERVIX%20DIS
+You can replace the entity_id with the entoty_id you choose, here we have entity_id = http://entity/CST/CERVIX%20DIS
 
 ### Stopping the Docker Container :
 
@@ -129,7 +133,7 @@ Using the Streamlit Interface:
 * 200 OK: The request was successful, and the hierarchical relationships were returned.
 * 404 Not Found: The entity ID was not found in the dataset.
 
-## Key Points : To be finished!
+## Key Points
 
 ### Pathology Hierarchy Retrieval
 
@@ -139,17 +143,14 @@ Each row in the CSV represents a pathology and its parent(s). For example, consi
 * CERVIX DISORDERS has a depth of 1 (direct parent).
 * CERVICITIS, CERVIX NEOPLASM, and PAPANICOLAU SMEAR SUSPICIOUS have a depth of 0 (siblings).
 
-Recursive Ancestor Retrieval :
+#### Recursive Ancestor Retrieval
+The get_ancestors_and_siblings function employs recursion to retrieve the full hierarchy of a pathology, tracing all parent entities up to the root.
 
-The get_ancestors_and_siblings function uses recursion to retrieve the complete hierarchy of a pathology, enabling it to trace all parent entities up to the root.
+#### Challenges Encountered
+During development, I faced some challenges, such as an infinite loop when searching for siblings, and I had difficulty pinpointing the exact cause of the issue.
 
-Issues :
-
-I encountered some issues in the process, such as the infinite loop to search for siblings and I struggled identifying the source of the error.
-
-Time Spent :
-
-I spent a few hours coding finishing the Hierarchy Retrieval script.
+#### Time Spent
+I dedicated several hours to completing the Hierarchy Retrieval script.
 
 ### Jupyter Notebook for Testing
 
